@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Task List</title>
+    </head>
+    <body>
+        <h1>My To Do list</h1>
+        <br />
+        <a href="{% url 'task-create' %}">Add Item</a>
+        <br /><br />
+        <table>
+            <thead>
+                <th>Item</th>
+                <th>#</th>
+                <th>#</th>
+                <th>#</th>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <th>{{ task.title }}</th>
+                    <th><a href="{% url 'task' task.id %}">View</a></th>
+                    <th><a href="{% url 'task-update' task.id %}">Edit</a></th>
+                    <th><a href="{% url 'task-delete' task.id %}">Delete</a></th>
+                </tr>
+                {% empty %}
+                <tr>
+                    <th>No items in list</th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>
